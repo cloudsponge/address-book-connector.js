@@ -1,2 +1,10 @@
+# this is a node project:
 language: node_js
+
+# cache the dependencies to speed up the build
 cache: yarn
+
+# check lint and tests
+script:
+  - yarn lint
+  - yarn test
