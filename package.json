@@ -1,0 +1,40 @@
+{
+  "name": "address-book-connector.js",
+  "version": "1.0.0",
+  "description": "Connect your users's address books to other services simply and securely.",
+  "main": "index.js",
+  "repository": "https://github.com/cloudsponge/address-book-connector.js.git",
+  "author": "Graeme Rouse <graeme@cloudsponge.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --config ./jest.config.js",
+    "test:coverage": "yarn test --coverage --coveragePathIgnorePatterns=/debug",
+    "lint": "yarn eslint \"./**/*.js\"",
+    "build:clean": "rimraf dist",
+    "build:dist": "rollup -c",
+    "build": "yarn build:clean && yarn build:dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "core-js": "^3.2.1",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.21.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-size-snapshot": "^0.10.0",
+    "rollup-plugin-strip": "^1.2.2",
+    "rollup-plugin-uglify": "^6.0.3"
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Share and Earn Rewards</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/1368b002a4.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3 class="gilroy-bold mt-4">Share via email</h3>
+          <p class="text-muted m-0">
+            Invite people to subscribe to CloudSponge by entering in their emails. (We'll automatically add your referral link!)
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form class="w-100" action="#" accept-charset="UTF-8" method="post" data-share-js="true">
+            <input type="hidden" name="refUrl" value="http://localhost:8000/?ref_id=xyzabc000">
+            <input type="hidden" name="owner" id="owner" value="">
+            <div class="row">
+              <div class="col-lg-8 col-md-12">
+                <input type="text" name="email" id="email" value="" class="form-control cloudsponge-contacts mt-4" placeholder="To: (enter contact's email)" required="required" aria-describedby="#emailHelp">
+                <small class="form-text text-muted" id="emailHelp">Separate multiple emails with commas.</small>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary cloudsponge-launch mt-4" href="" type="button">
+                  <i class="fas fa-address-card mr-2"></i>
+                  <span>Add From Contacts</span>
+                </button>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-lg-8 col-md-12">
+                <textarea name="body" id="body" class="form-control email-refer" rows="5">Hey, I highly recommend giving CloudSponge's service a go. It's an awesome tool for letting your customers access their own address books without leaving your website. People stay more engaged with your app and love you for the smooth UI. Give it a try and subscribe using my personal invite link below to get a free month of CloudSponge service!</textarea>
+                <button id="send-invites" name="button" type="submit" class="btn btn-primary my-4"><i class="fas fa-paper-plane mr-2"></i>
+                  <span>Send The Invite</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- <script src="main.js" data-id="cloudsponge-sharer" data-key="oxxt6R9s7dKAaew1RXKpxA" data-host="stage-api.cloudsponge.com"></script> -->
+  <script src="sharer.js" data-id="cloudsponge-sharer"></script>
+  <script>
+    sharer.setOptions({key: "Tx1Xd0brCZfPSw32dt7kzA", success: function() {console.log('success!')}});
+  </script>
+  <!-- <script src="sharer.js"></script> -->
+  <!-- <script>
+    window.sharer.setOptions({key: 'oxxt6R9s7dKAaew1RXKpxA', host: 'stage-api.cloudsponge.com'})
+  </script> -->
+</body>
+</html>
