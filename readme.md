@@ -27,6 +27,7 @@
 * building
   * rollup - build tool
   * rollup-plugin-node-resolve - resolves node_modules
+  * rollup-plugin-commonjs - transforms `require` into something useful for UMD builds
   * rollup-plugin-babel - loads babel
   * rollup-plugin-copy - copies an html file to dist for testing
   * rollup-plugin-serve - a simple web server to manually test the lib locally

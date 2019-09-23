@@ -1,4 +1,5 @@
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import strip from 'rollup-plugin-strip';
@@ -47,6 +48,7 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
+      commonjs(commonjsArgs),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
       sizeSnapshot(snapshotArgs),
     ],
@@ -64,6 +66,7 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
+      commonjs(commonjsArgs),
       strip({ debugger: true }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot(snapshotArgs),
