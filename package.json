@@ -1,4 +1,5 @@
 {
+  "private": false,
   "name": "@cloudsponge/address-book-connector.js",
   "version": "1.0.2",
   "description": "Connect your users's address books to other services simply and securely.",
@@ -9,6 +10,9 @@
   },
   "author": "Graeme Rouse <graeme@cloudsponge.com>",
   "license": "MIT",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "jest --config ./jest.config.js",
     "test:coverage": "yarn test --coverage --coveragePathIgnorePatterns=/debug",
