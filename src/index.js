@@ -29,7 +29,7 @@ initialize();
 
 // the addressBookConnector object wraps the cloudsponge object and accepts options from the host page
 const addressBookConnector = {
-  intialize,
+  initialize,
   setOptions,
 };
 
