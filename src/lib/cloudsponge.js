@@ -46,7 +46,7 @@ const cloudspongeTrigger = data => {
     .trigger(data)
     .then(() => {
       console.log(
-        `[address-book-connector.js] Successfully triggered cloudsponge with data:`,
+        '[address-book-connector.js] Successfully triggered cloudsponge with data:',
         data
       );
       // invoke a callback on the sharer object
@@ -54,7 +54,7 @@ const cloudspongeTrigger = data => {
     })
     .catch(error => {
       console.error(
-        `[address-book-connector.js] Failed to trigger cloudsponge:`,
+        '[address-book-connector.js] Failed to trigger cloudsponge:',
         error
       );
       // invoke a callback on the sharer object
