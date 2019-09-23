@@ -27,7 +27,10 @@ export const initialize = () => {
 // do the initialization now
 initialize();
 
-// the sharer object wraps the cloudsponge object and accepts options from the host page
-const sharer = {
+// the addressBookConnector object wraps the cloudsponge object and accepts options from the host page
+const addressBookConnector = {
+  intialize,
   setOptions,
 };
+
+export default addressBookConnector;

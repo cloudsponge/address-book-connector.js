@@ -41,7 +41,7 @@ export default [
     output: {
       file: 'dist/address-book-connector.js',
       format: 'umd',
-      name: 'address-book-connector',
+      name: 'addressBookConnector',
       globals: { window: 'window' },
     },
     plugins: [
