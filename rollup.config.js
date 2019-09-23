@@ -4,8 +4,6 @@ import replace from 'rollup-plugin-replace';
 import strip from 'rollup-plugin-strip';
 import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
-import serve from 'rollup-plugin-serve';
-import copy from 'rollup-plugin-copy';
 
 // import pkg from './package.json';
 const babelOptions = require('./babel.config');
@@ -51,10 +49,6 @@ export default [
       resolve({ extensions }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
       sizeSnapshot(snapshotArgs),
-      copy({
-        targets: [{ src: 'src/index.html', dest: 'dist' }],
-      }),
-      serve('dist'),
     ],
   },
 
