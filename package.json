@@ -17,6 +17,7 @@
     "test": "jest --config ./jest.config.js",
     "test:coverage": "yarn test --coverage --coveragePathIgnorePatterns=/debug",
     "lint": "yarn eslint \"./**/*.js\"",
+    "lint:fix": "yarn eslint --fix \"./**/*.js\"",
     "build:clean": "rimraf dist",
     "build:dist": "rollup -c",
     "build": "yarn build:clean && yarn build:dist"
