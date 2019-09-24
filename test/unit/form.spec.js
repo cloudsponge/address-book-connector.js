@@ -131,7 +131,7 @@ describe('inputKey', () => {
     const input = {
       id: 'theID',
       name: 'theName',
-      dataset: { shareName: 'theShareName' },
+      dataset: { addressBookConnectorName: 'theShareName' },
       className: 'cloudsponge-contacts',
     };
     expect(inputKey(input)).toBe('contacts');
@@ -140,7 +140,7 @@ describe('inputKey', () => {
     const input = {
       id: 'theID',
       name: 'theName',
-      dataset: { shareName: 'theShareName' },
+      dataset: { addressBookConnectorName: 'theShareName' },
     };
     expect(inputKey(input)).toBe('theShareName');
   });
@@ -173,7 +173,7 @@ describe('serializeForm', () => {
         className: 'cloudsponge-contacts',
         dataset: { [jsonDataKey]: '[]' },
       },
-      select = { type: 'select', dataset: { shareName: 'selecty' }, value: 1 },
+      select = { type: 'select', dataset: { addressBookConnectorName: 'selecty' }, value: 1 },
       textarea = { type: 'textarea', value: 'some text', id: 'texty' };
     formElement.querySelectorAll.mockImplementation(() => [
       input,

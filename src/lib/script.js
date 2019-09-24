@@ -1,10 +1,10 @@
-import { cloudspongeScriptId } from './consts';
+import { namespace, cloudspongeScriptId } from './consts';
 import { cloudspongeLoaded } from './cloudsponge';
 
 const findScript = () =>
   document.currentScript ||
   document.querySelector(
-    'script[data-id=cloudsponge-sharer],script[src*="sharer.js"]'
+    `script[data-id=cloudsponge-${namespace}],script[src*="address-book-connector.js"]`
   ) ||
   {};
 

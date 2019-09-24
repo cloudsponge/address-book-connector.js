@@ -4,7 +4,7 @@
 
 import { namespace, jsonDataKey, contactsFieldClassName } from './consts';
 
-// returns the form that the sharer is active on
+// returns the form that the addressBookConnector is active on
 const form = () => {
   return document.querySelector(`[data-${namespace}-js]`);
 };
@@ -59,14 +59,14 @@ const isContactField = input => {
 
 // gets the appropriate key name for a given input by:
 //   first checking if the input is the special field for "contacts",
-//   then returning the 'data-share-name' attribute,
+//   then returning the 'data-addressBookConnector-name' attribute,
 //   then returning the name attribute
 //   then returning the id attribute
 const inputKey = input => {
   if (isContactField(input)) {
     return 'contacts';
   } else {
-    return (input.dataset && input.dataset.shareName) || input.name || input.id;
+    return (input.dataset && input.dataset[`${namespace}Name`]) || input['name'] || input.id;
   }
 };
 
@@ -74,7 +74,7 @@ const inputKey = input => {
 const serializeForm = () => {
   const formElement = form();
   if (formElement) {
-    const data = new Object();
+    const data = {};
     formElement.querySelectorAll('input,textarea,select').forEach(input => {
       data[inputKey(input)] = getData(input, input.value);
     });
