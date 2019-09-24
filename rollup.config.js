@@ -48,8 +48,8 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
-      commonjs(commonjsArgs),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      commonjs(commonjsArgs),
       sizeSnapshot(snapshotArgs),
     ],
   },
@@ -66,9 +66,9 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       commonjs(commonjsArgs),
       strip({ debugger: true }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot(snapshotArgs),
       uglify(),
     ],
