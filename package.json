@@ -21,7 +21,9 @@
     "build:dist": "rollup -c",
     "build": "yarn build:clean && yarn build:dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
