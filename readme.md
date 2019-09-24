@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cloudsponge/address-book-connector.js.svg?branch=master)](https://travis-ci.org/cloudsponge/address-book-connector.js)
+
 # Getting Started
 
 Add the library to your `package.json` with `yarn`
