@@ -173,7 +173,11 @@ describe('serializeForm', () => {
         className: 'cloudsponge-contacts',
         dataset: { [jsonDataKey]: '[]' },
       },
-      select = { type: 'select', dataset: { addressBookConnectorName: 'selecty' }, value: 1 },
+      select = {
+        type: 'select',
+        dataset: { addressBookConnectorName: 'selecty' },
+        value: 1,
+      },
       textarea = { type: 'textarea', value: 'some text', id: 'texty' };
     formElement.querySelectorAll.mockImplementation(() => [
       input,

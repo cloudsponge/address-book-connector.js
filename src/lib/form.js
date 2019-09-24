@@ -66,7 +66,11 @@ const inputKey = input => {
   if (isContactField(input)) {
     return 'contacts';
   } else {
-    return (input.dataset && input.dataset[`${namespace}Name`]) || input['name'] || input.id;
+    return (
+      (input.dataset && input.dataset[`${namespace}Name`]) ||
+      input['name'] ||
+      input.id
+    );
   }
 };
 
