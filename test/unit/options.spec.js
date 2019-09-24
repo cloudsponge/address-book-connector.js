@@ -1,4 +1,4 @@
-import options, { mergeOptions } from '../../src/lib/options';
+import options from '../../src/lib/options';
 
 describe('options', () => {
   it('loads', () => {
