@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.6
+
+* remove lodash and replace with utils and polyfills.
+
 ## 1.0.5
 
 * Fixes build order.
