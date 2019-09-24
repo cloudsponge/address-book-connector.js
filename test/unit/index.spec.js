@@ -1,6 +1,8 @@
-import { setOptions, initialize } from '../../src/index';
+import addressBookConnector from '../../src/index';
 import { addScript, thisScript } from '../../src/lib/script';
 import options from '../../src/lib/options';
+
+const { setOptions, initialize } = addressBookConnector;
 
 // mock addScript
 jest.mock('../../src/lib/script', () => ({
