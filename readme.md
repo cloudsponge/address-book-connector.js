@@ -146,6 +146,20 @@ Most lint errors can be automatically fixed with:
 
     yarn lint:fix
 
+
+## Publishing
+
+When changes are done and ready to be packaged into a new version of the module, run:
+
+*       yarn build
+    to ensure that the `dist` folder is up to date.
+*       yarn version
+    to set the new semver.
+*       yarn publish
+    to update the package with the latest version.
+*       git push
+    to keep git repo in synchronization with the project.
+
 ## Dependencies
 
 `package.json` includes the following dev dependencies and rationale:
