@@ -83,6 +83,17 @@ When this form is submitted, CloudSponge will forward a payload like so:
 
 At this time, we don't validate any of the data in the form. Your front-end code should perform any necessary validations before the form is submitted.
 
+### Responses
+
+When your form is submitted, data will be triggered on your webhook. The first step of that journey is to push the data to api.cloudsponge.com for authentication and forwarding to your destinations. This POST request may succeed or fail. To detect these cases, add a `success` and `failure` handler to your options.
+
+* `success` - called when your form is accepted by CloudSponge.
+* `failure` - called when your form is not accepted by CloudSponge. This function may accept a single `data` parameter that will indicate the reason for the failure. Typical reasons that the form may not be accepted is that the same data has been submitted recently, or the form has been submitted too many times recently. Both cases will respond with a 429 error code in the failure argument. For example:
+
+        {status: 429, responseText: "Retry later", data: "Retry later"}
+
+N.B. a successful response from CloudSponge does **not** confirm that the trigger has been forwarded to a destination such as Zapier.
+
 
 ## Optional
 
