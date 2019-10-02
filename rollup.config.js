@@ -40,7 +40,7 @@ export default [
   {
     input,
     output: {
-      file: 'dist/address-book-connector.js',
+      file: 'dist/address-book-connector.debug.js',
       format: 'umd',
       name: 'addressBookConnector',
       globals: { window: 'window' },
@@ -60,7 +60,7 @@ export default [
     output: {
       file: 'dist/address-book-connector.min.js',
       format: 'umd',
-      name: 'address-book-connector',
+      name: 'addressBookConnector',
       globals: { window: 'window' },
     },
     plugins: [
