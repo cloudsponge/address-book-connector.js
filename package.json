@@ -22,7 +22,9 @@
     "build:dist": "rollup -c",
     "build": "yarn build:clean && yarn build:dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "serialize-javascript": "^2.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",

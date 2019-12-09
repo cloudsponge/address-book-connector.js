@@ -47,11 +47,12 @@ describe('csScriptSrc', () => {
 });
 
 describe('script', () => {
-  it('invokes the callback when the script is found', () => {
-    document.querySelector.mockImplementation(() => true);
+  it('invokes the callback when the script was already loaded', () => {
+    window.cloudsponge = {};
     const callback = jest.fn();
     script('', callback);
     expect(callback).toHaveBeenCalled();
+    delete window.cloudsponge;
   });
   it('skips callback when not a function', () => {
     document.querySelector.mockImplementation(() => true);
