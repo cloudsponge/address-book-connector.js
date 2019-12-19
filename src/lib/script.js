@@ -12,7 +12,9 @@ const thisScript = findScript();
 
 // adds the CloudSponge Address Book Widget script exactly once to the page.
 const script = (src, cb) => {
-  if (!document.querySelector(`script#${cloudspongeScriptId}`)) {
+  // the cloudsponge object attaches itself to the window, so we can check to see if it
+  //  exists already before we add the object a second time
+  if (!window.cloudsponge) {
     const scriptTag = document.createElement('script');
     scriptTag.id = cloudspongeScriptId;
     scriptTag.src = src;
