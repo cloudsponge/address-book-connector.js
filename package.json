@@ -22,9 +22,6 @@
     "build:dist": "rollup -c",
     "build": "yarn build:clean && yarn build:dist"
   },
-  "dependencies": {
-    "serialize-javascript": "^2.1.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
@@ -47,6 +44,9 @@
     "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-strip": "^1.2.2",
     "rollup-plugin-uglify": "^6.0.3"
+  },
+  "resolutions": {
+    "serialize-javascript": ">=2.1.1"
   },
   "bugs": {
     "url": "https://github.com/cloudsponge/address-book-connector.js/issues"
