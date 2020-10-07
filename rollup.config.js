@@ -1,6 +1,6 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 import replace from 'rollup-plugin-replace';
 import strip from 'rollup-plugin-strip';
 import { uglify } from 'rollup-plugin-uglify';
@@ -17,7 +17,7 @@ const excludeAllExternals = id => !id.startsWith('.') && !id.startsWith('/');
 
 const getBabelOptions = () => ({
   exclude: 'node_modules/**',
-  runtimeHelpers: true,
+  babelHelpers: 'bundled',
   ...babelOptions,
 });
 

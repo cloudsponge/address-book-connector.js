@@ -4,7 +4,8 @@ language: node_js
 # cache the dependencies to speed up the build
 cache: yarn
 
-# check lint and tests
+# check lint, tests and build
 script:
   - yarn lint
   - yarn test
+  - yarn build
