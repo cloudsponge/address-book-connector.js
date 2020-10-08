@@ -8,6 +8,7 @@ import {
 import {
   contactsField,
   ownerField,
+  dataField,
   getData,
   setData,
 } from '../../src/lib/form';
@@ -16,7 +17,13 @@ import { cloudspongeTrigger } from '../../src/lib/cloudsponge';
 describe('computeNextContactsList', () => {
   it('adds a manually created contact', () => {
     expect(computeNextContactsList(['email@email.com'], [], [])).toEqual([
-      { email: 'email@email.com' },
+      {
+        email: 'email@email.com',
+        first_name: '',
+        last_name: '',
+        greeting: 'Hi there',
+        to: 'email@email.com',
+      },
     ]);
   });
   it('removes a deleted contact', () => {
@@ -27,7 +34,22 @@ describe('computeNextContactsList', () => {
     ];
     expect(
       computeNextContactsList(['email2', 'email'], currentList, [])
-    ).toEqual([{ email: 'email2' }, { email: 'email' }]);
+    ).toEqual([
+      {
+        email: 'email2',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email2',
+      },
+      {
+        email: 'email',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email',
+      },
+    ]);
   });
   it('does not change the list', () => {
     const currentList = [
@@ -37,7 +59,29 @@ describe('computeNextContactsList', () => {
     ];
     expect(
       computeNextContactsList(['email1', 'email2', 'email'], currentList, [])
-    ).toEqual(currentList);
+    ).toEqual([
+      {
+        email: 'email1',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email1',
+      },
+      {
+        email: 'email2',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email2',
+      },
+      {
+        email: 'email',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email',
+      },
+    ]);
   });
   it('adds all from the new list', () => {
     const newList = [
@@ -47,7 +91,29 @@ describe('computeNextContactsList', () => {
     ];
     expect(
       computeNextContactsList(['email1', 'email2', 'email'], [], newList)
-    ).toEqual(newList);
+    ).toEqual([
+      {
+        email: 'email1',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email1',
+      },
+      {
+        email: 'email2',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email2',
+      },
+      {
+        email: 'email',
+        first_name: '',
+        greeting: 'Hi there',
+        last_name: '',
+        to: 'email',
+      },
+    ]);
   });
 });
 
@@ -55,6 +121,7 @@ describe('computeNextContactsList', () => {
 jest.mock('../../src/lib/form', () => ({
   contactsField: jest.fn(),
   ownerField: jest.fn(),
+  dataField: jest.fn(),
   getData: jest.fn(),
   setData: jest.fn(),
 }));
@@ -83,12 +150,44 @@ describe('updateContactsField', () => {
   it('adds the new contacts objects', () => {
     const contacts = [contact1, contact2, contact3];
     updateContactsField(contacts);
-    expect(setData).toHaveBeenCalledWith(input, contacts);
+    expect(setData).toHaveBeenCalledWith(input, [
+      {
+        ...contact1,
+        greeting: 'Hi first1',
+        to: 'first1 last1 <email1>',
+      },
+      {
+        ...contact2,
+        greeting: 'Hi first2',
+        to: 'first2 last2 <email2>',
+      },
+      {
+        ...contact3,
+        greeting: 'Hi first3',
+        to: 'first3 last3 <email3>',
+      },
+    ]);
   });
   it('excludes unselected contacts objects', () => {
     const contacts = [contact1, contact2, contact3, contact4];
     updateContactsField(contacts);
-    expect(setData).toHaveBeenCalledWith(input, [contact1, contact2, contact3]);
+    expect(setData).toHaveBeenCalledWith(input, [
+      {
+        ...contact1,
+        greeting: 'Hi first1',
+        to: 'first1 last1 <email1>',
+      },
+      {
+        ...contact2,
+        greeting: 'Hi first2',
+        to: 'first2 last2 <email2>',
+      },
+      {
+        ...contact3,
+        greeting: 'Hi first3',
+        to: 'first3 last3 <email3>',
+      },
+    ]);
   });
   it('skips setting data when the contacts field is not found', () => {
     contactsField.mockImplementation(() => undefined);
@@ -101,6 +200,11 @@ describe('updateOwnerField', () => {
   it('calls setData', () => {
     const owner = { first_name: 'first', last_name: 'last', email: 'email' };
     updateOwnerField(null, null, owner);
-    expect(setData).toHaveBeenCalledWith(ownerInput, owner);
+    expect(setData).toHaveBeenCalledWith(ownerInput, {
+      ...owner,
+      from_name: 'first last',
+      reply_to_email: 'email',
+      reply_to_name: 'first last',
+    });
   });
 });

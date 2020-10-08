@@ -10,6 +10,8 @@ import {
 // mock the form object
 jest.mock('../../src/lib/form', () => ({
   form: jest.fn(),
+  setData: jest.fn(),
+  dataField: jest.fn(),
   ownerField: jest.fn(),
   contactsField: jest.fn(),
   serializeForm: jest.fn(),

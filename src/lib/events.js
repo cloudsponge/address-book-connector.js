@@ -1,16 +1,31 @@
-import { form, contactsField, ownerField, getData, setData } from './form';
+import {
+  form,
+  dataField,
+  contactsField,
+  ownerField,
+  getData,
+  setData,
+} from './form';
 import { getContact, contactObject } from './contacts';
+import options from './options';
 
 // using our list of emails as the master, pick contact objects from either list
 //  to create our next list of contacts
-export const computeNextContactsList = (emails, list1, list2) => {
+export const computeNextContactsList = (emails, list1, list2, opts) => {
   return emails.map(email => {
-    return getContact(list1, list2, email);
+    return getContact(list1, list2, email, opts);
   });
 };
 
 // assigns a JSON object to the contacts field for form submission
 export const updateContactsField = newContacts => {
+  const opts = {};
+  opts.subject = options.subject;
+  if (!opts.subject) {
+    const subjectField = dataField('subject');
+    opts.subject = subjectField && subjectField.value;
+  }
+
   const contactsInput = contactsField();
   if (contactsInput) {
     // the textarea has already been populated now
@@ -23,7 +38,8 @@ export const updateContactsField = newContacts => {
     const nextContacts = computeNextContactsList(
       selectedEmails,
       currentContacts,
-      newContacts
+      newContacts,
+      opts
     );
     setData(contactsInput, nextContacts);
   }
@@ -31,5 +47,5 @@ export const updateContactsField = newContacts => {
 
 // serialize the owner object into the owner field's dataset
 export const updateOwnerField = (contacts, source, owner) => {
-  setData(ownerField(), contactObject(owner));
+  setData(ownerField(), contactObject(owner, { owner: true }));
 };

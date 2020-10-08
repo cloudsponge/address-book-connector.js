@@ -17,6 +17,10 @@ Use the `addressBookConnector` object and set your CloudSponge key (get it from 
     import addressBookConnector from 'address-book-connector.js';
     addressBookConnector.setOptions({
         key: 'your-cloudsponge-key',
+        // set your reply_to_email to make sure that recipients will be able to reply
+        reply_to_email: 'support-inbox@yourdomain.com',
+        // the default name to place into the reply-to of the email
+        reply_to_name: 'Address Book Referrals'
     });
 
 ## Your form
@@ -31,7 +35,7 @@ Your form should include two special fields that will be sent to CloudSponge: co
 
 The contacts field can be a simple input or textarea that contains a comma separated list of email addresses. Even though the user only sees email addresses, we will also send the name and email address as structured data for each contact.
 
-The owner field is simiar. It will display an email address in the field and submit an object with the form data.
+The owner field is similar. It will display an email address in the field and submit an object with the form data.
 
 Strictly speaking, the owner field is optional. Owner and contacts may be hidden fields.
 

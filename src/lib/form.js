@@ -9,13 +9,19 @@ const form = () => {
   return document.querySelector(`[data-${namespace}-js]`);
 };
 
-// returns the input fireld that stores the owner data
-const ownerField = () => {
+const dataField = fieldName => {
   const formElement = form();
   return (
     formElement &&
-    formElement.querySelector(`[name=owner],[data-${namespace}-name=owner]`)
+    formElement.querySelector(
+      `[name=${fieldName}],[data-${namespace}-name=${fieldName}]`
+    )
   );
+};
+
+// returns the input fireld that stores the owner data
+const ownerField = () => {
+  return dataField('owner');
 };
 
 // returns the input fireld that stores the contacts data
@@ -91,6 +97,7 @@ const serializeForm = () => {
 // export all functions for testing
 export {
   form,
+  dataField,
   ownerField,
   contactsField,
   getData,

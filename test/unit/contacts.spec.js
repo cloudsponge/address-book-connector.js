@@ -18,6 +18,7 @@ describe('contactObject', () => {
   });
 });
 
+// TODO add specs for subject and personalSubject
 describe('getContact', () => {
   it('picks a contact object from the first list', () => {
     const matchingContact = {
@@ -25,9 +26,11 @@ describe('getContact', () => {
       last_name: 'last',
       email: 'email@example.com',
     };
-    expect(getContact([matchingContact], [], 'email@example.com')).toEqual(
-      matchingContact
-    );
+    expect(getContact([matchingContact], [], 'email@example.com')).toEqual({
+      ...matchingContact,
+      greeting: 'Hi first',
+      to: 'first last <email@example.com>',
+    });
   });
 
   it('picks a contact object from the second list', () => {
@@ -36,9 +39,11 @@ describe('getContact', () => {
       last_name: 'last',
       email: 'email@example.com',
     };
-    expect(getContact([], [matchingContact], 'email@example.com')).toEqual(
-      matchingContact
-    );
+    expect(getContact([], [matchingContact], 'email@example.com')).toEqual({
+      ...matchingContact,
+      to: 'first last <email@example.com>',
+      greeting: 'Hi first',
+    });
   });
 
   it('returns the email as an object when there is no match', () => {
@@ -49,6 +54,10 @@ describe('getContact', () => {
     };
     expect(getContact([matchingContact], [], 'email2@example.com')).toEqual({
       email: 'email2@example.com',
+      to: 'email2@example.com',
+      greeting: 'Hi there',
+      first_name: '',
+      last_name: '',
     });
   });
 });

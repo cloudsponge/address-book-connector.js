@@ -4,6 +4,7 @@ const document = window.document;
 import options from './lib/options';
 import { thisScript, addScript } from './lib/script';
 import { isObj, isStr } from './lib/utils';
+import { updateOwnerField } from './lib/events';
 
 // public function that assigns a key and initializes the cloudsponge object
 // key: required - your CloudSponge key, get one from your account at www.cloudsponge.com
@@ -16,6 +17,9 @@ const setOptions = opts => {
     // load the external cloudsponge script onto the page
     addScript(opts);
   }
+
+  // options may have affected the owner field, so let's update it
+  updateOwnerField();
 };
 
 const initialize = () => {
