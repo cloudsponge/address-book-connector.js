@@ -29,7 +29,7 @@ export function contactObject(contact, opts = {}) {
   obj.last_name = contact.last_name || '';
 
   if (opts.owner) {
-    const ownerName = `${obj.first_name} ${obj.last_name}`.trim()
+    const ownerName = `${obj.first_name} ${obj.last_name}`.trim();
     // create the from_name, reply_to_name and reply_to_email for the object
     // Sender name is the name of the owner of the address book, if available
     obj.sender_name = ownerName || options.defaultSenderName || '';
@@ -38,10 +38,15 @@ export function contactObject(contact, opts = {}) {
     }
     // duplicate the sender_name field as from_name for other ESPs which use this name.
     obj.from_name = obj.sender_name;
-    // reply to name is the same as the 
-    obj.reply_to_name = ownerName || options.defaultReplyToName || options.defaultSenderName || '';
+    // reply to name is the same as the
+    obj.reply_to_name =
+      ownerName ||
+      options.defaultReplyToName ||
+      options.defaultSenderName ||
+      '';
     // where should recipients reply to?
-    obj.reply_to_email = options.replyToEmail || obj.email || options.defaultReplyToEmail || '';
+    obj.reply_to_email =
+      options.replyToEmail || obj.email || options.defaultReplyToEmail || '';
     return obj;
   }
 
@@ -62,7 +67,8 @@ export function contactObject(contact, opts = {}) {
 
 function formatEmailAddr(contact) {
   if (contact.first_name || contact.last_name) {
-    const fullName = `${contact.first_name || ''} ${contact.last_name || ''}`.trim();
+    const fullName = `${contact.first_name || ''} ${contact.last_name ||
+      ''}`.trim();
     return `${fullName} <${contact.email}>`.trim();
   }
   return contact.email;

@@ -5,8 +5,7 @@ const findScript = () =>
   document.currentScript ||
   document.querySelector(
     `script[data-id=cloudsponge-${namespace}],script[src*="address-book-connector.js"]`
-  ) ||
-  {parentElement: document.head};
+  ) || { parentElement: document.head };
 
 const thisScript = findScript();
 

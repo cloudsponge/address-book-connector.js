@@ -210,22 +210,24 @@ describe('updateContactsField', () => {
   });
 
   it('gets the subject from a dataField', () => {
-    dataField.mockImplementation(() => null)
-    updateContactsField([])
-    expect(dataField).toHaveBeenCalled()
-  })
+    dataField.mockImplementation(() => null);
+    updateContactsField([]);
+    expect(dataField).toHaveBeenCalled();
+  });
 
   it('gets the subject from the options', () => {
-    options.subject = "optional subject"
-    updateContactsField([])
-    expect(dataField).not.toHaveBeenCalled()
-  })
+    options.subject = 'optional subject';
+    updateContactsField([]);
+    expect(dataField).not.toHaveBeenCalled();
+  });
 
-  it('gets the subject from a dataField', () => {
-    dataField.mockImplementation(() => { return {value: 'subject'} })
-    updateContactsField([])
-    expect(dataField).toHaveBeenCalled()
-  })
+  it('uses the subject from a dataField', () => {
+    dataField.mockImplementation(() => {
+      return { value: 'subject' };
+    });
+    updateContactsField([]);
+    expect(dataField).toHaveBeenCalled();
+  });
 });
 
 describe('updateOwnerField', () => {
