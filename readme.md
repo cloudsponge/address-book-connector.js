@@ -23,6 +23,27 @@ Use the `addressBookConnector` object and set your CloudSponge key (get it from 
         reply_to_name: 'Address Book Referrals'
     });
 
+## Best practices for email fields
+
+If you are sending emails in response to the form triggering, it is important to map the fields from this form to your email integration with best practices in mind. Here are a few suggestions to maximize deliverability and email engagements. 
+
+### Name your recipients
+
+The `to` field should look like it is addressed directly to the recipient. This means formatting their email so that it includes their name. We do this for you and pass it through as the **To** value.
+
+But be careful! Always test your Zap using a formatted `to` value to see if this causes any issue with your ESP. For example, Sendinblue does not like emails formatted this way. If your ESP won't accept the **To** field, use **Contact Email** instead.
+
+### From or Sender
+
+When we see an email in our inbox, the From Name is always displayed prominently. And so it's important to make sure that this information is as familiar looking as possible. Here's a few things to keep in mind. 
+
+1. Use the inviters name as the **From Name** if possible. In cases where it is not available, have a reasonable default value. That means using the TK
+2. Use an email address that has been verified for sending through your ESP as the **From Email**. This means that you may need to add SPF and DKIM entries as specified by your ESP. You can hardcode this value into your Zap, or you can set it in the default values.
+3. Send from a verified email. Don't try to send from your customer's email address. Doing so will produce strange looking results in an email client. Instead, you can optionally use your customer's email in the Reply To field, so that recipients can reply to whoever sent the email directly rather than your organizational email.
+4. Give recipients a logical place to reply. Depending on your needs, you may want recipients to reply directly to your organization. Or you may prefer them to reply directly to your customer. In either case, you'll want to make sure that the email address is defined. When using the CloudSponge Contact Picker, your customer's email is only available if they used the Contact Picker. That's why we support configuring a default value for the **Reply To Email** and **Reply To Name**.
+5. Use an attention grabbing subject. There's nothing better than someone's name for grabbing their attention. Put it right into the subject line. We've made it easy for you by creating a **Personal Subject** value that already includes their first name (if it is available).
+6. Greet them. Grab their attention in the first few words of the email. A personal greeting that includes their name is another great way to make your email stand out. Once again, we make this easy by adding a **Greeting** value which can be inserted ahead of your typical body text. Make sure to use proper punctuation as well.
+
 ## Your form
 
 The `addressBookConnector` is designed to be attached to a form on your page. Rather than submitting this form and its inputs, the `addressBookConnector` will serialize the form and submit its data to CloudSponge so that we can forward it on to the appropriate destinations.
@@ -44,6 +65,17 @@ Strictly speaking, the owner field is optional. Owner and contacts may be hidden
 Of course, your downstream destination probably needs some more information than just the owner and contacts. You may want to pass additional information, such as a referral code or some user input content to include in an email. Fear not. You can add this data and more by simply adding inputs to the form.
 
 Any form data can be hidden fields, or it can be a user visible field. The choice is yours.
+
+### Setting default values
+
+Since some fields are only available if a user uses the Contact Picker, it's important to set up reasonable default values. For example, when the user simply types an email address into the **To** field, we won't have the name associated with that recipient, no will we have the name or email address associated with the sender. It's important to think about how the email will appear in this situation. It won't have any of the personalizations that come from the Contact Picker. So we've exposed some default options for you to set. These can be set up either as HTML data attributes or they can be passed in to the call to `addressBookConnector.setOptions()`.
+
+| Default | Name | Meaning | Resonable value |
+|---------|------|---------|-----------------|
+| Sender name | defaultSenderName | data-default-sender-name | The name to supply for the sender, when none is present.|
+| Sender email | senderEmail | data-sender-email | The verified email address of your ESP. |
+| Reply to name | defaultReplyToName | data-default-reply-to-name | The name to use when replying to your email. Uses the sender name if not set. |
+| Reply to email | defaultReplyToEmail | data-default-reply-to-email | The email to use when replying to your email. Users the Sender Email if not set. This value can be overridden by setting a value for `replyToEmail`. |
 
 ### Example
 

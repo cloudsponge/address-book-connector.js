@@ -14,6 +14,14 @@ import {
 } from '../../src/lib/form';
 import { cloudspongeTrigger } from '../../src/lib/cloudsponge';
 
+import options from '../../src/lib/options';
+beforeEach(() => {
+  // clear the options object of data that was in it from the previous run
+  for (let key of Object.keys(options)) {
+    delete options[key];
+  }
+});
+
 describe('computeNextContactsList', () => {
   it('adds a manually created contact', () => {
     expect(computeNextContactsList(['email@email.com'], [], [])).toEqual([
@@ -26,6 +34,7 @@ describe('computeNextContactsList', () => {
       },
     ]);
   });
+
   it('removes a deleted contact', () => {
     const currentList = [
       { email: 'email1' },
@@ -51,6 +60,7 @@ describe('computeNextContactsList', () => {
       },
     ]);
   });
+
   it('does not change the list', () => {
     const currentList = [
       { email: 'email1' },
@@ -83,6 +93,7 @@ describe('computeNextContactsList', () => {
       },
     ]);
   });
+
   it('adds all from the new list', () => {
     const newList = [
       { email: 'email1' },
@@ -147,6 +158,7 @@ describe('updateContactsField', () => {
     contact2 = { email: 'email2', first_name: 'first2', last_name: 'last2' },
     contact3 = { email: 'email3', first_name: 'first3', last_name: 'last3' },
     contact4 = { email: 'email4', first_name: 'first4', last_name: 'last4' };
+
   it('adds the new contacts objects', () => {
     const contacts = [contact1, contact2, contact3];
     updateContactsField(contacts);
@@ -168,6 +180,7 @@ describe('updateContactsField', () => {
       },
     ]);
   });
+
   it('excludes unselected contacts objects', () => {
     const contacts = [contact1, contact2, contact3, contact4];
     updateContactsField(contacts);
@@ -189,11 +202,30 @@ describe('updateContactsField', () => {
       },
     ]);
   });
+
   it('skips setting data when the contacts field is not found', () => {
     contactsField.mockImplementation(() => undefined);
     updateContactsField([]);
     expect(setData).not.toHaveBeenCalled();
   });
+
+  it('gets the subject from a dataField', () => {
+    dataField.mockImplementation(() => null)
+    updateContactsField([])
+    expect(dataField).toHaveBeenCalled()
+  })
+
+  it('gets the subject from the options', () => {
+    options.subject = "optional subject"
+    updateContactsField([])
+    expect(dataField).not.toHaveBeenCalled()
+  })
+
+  it('gets the subject from a dataField', () => {
+    dataField.mockImplementation(() => { return {value: 'subject'} })
+    updateContactsField([])
+    expect(dataField).toHaveBeenCalled()
+  })
 });
 
 describe('updateOwnerField', () => {
@@ -203,6 +235,7 @@ describe('updateOwnerField', () => {
     expect(setData).toHaveBeenCalledWith(ownerInput, {
       ...owner,
       from_name: 'first last',
+      sender_name: 'first last',
       reply_to_email: 'email',
       reply_to_name: 'first last',
     });

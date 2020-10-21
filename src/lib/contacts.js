@@ -29,19 +29,29 @@ export function contactObject(contact, opts = {}) {
   obj.last_name = contact.last_name || '';
 
   if (opts.owner) {
-    // create the from name, reply_to_name and reply_to_email for the object
-    obj.from_name = `${obj.first_name} ${obj.last_name}`.trim();
-    obj.reply_to_name = options.reply_to_name || obj.from_name;
-    obj.reply_to_email = options.reply_to_email || obj.email || '';
+    const ownerName = `${obj.first_name} ${obj.last_name}`.trim()
+    // create the from_name, reply_to_name and reply_to_email for the object
+    // Sender name is the name of the owner of the address book, if available
+    obj.sender_name = ownerName || options.defaultSenderName || '';
+    if (options.senderEmail) {
+      obj.sender_email = options.senderEmail;
+    }
+    // duplicate the sender_name field as from_name for other ESPs which use this name.
+    obj.from_name = obj.sender_name;
+    // reply to name is the same as the 
+    obj.reply_to_name = ownerName || options.defaultReplyToName || options.defaultSenderName || '';
+    // where should recipients reply to?
+    obj.reply_to_email = options.replyToEmail || obj.email || options.defaultReplyToEmail || '';
     return obj;
   }
 
   // set the personalized fields
   if (opts.subject) {
+    obj.subject = opts.subject;
     if (contact.first_name) {
-      obj.personalSubject = `${contact.first_name} ${opts.subject}`;
+      obj.personal_subject = `${contact.first_name} ${opts.subject}`.trim();
     } else {
-      obj.personalSubject = opts.subject;
+      obj.personal_subject = opts.subject;
     }
   }
   obj.to = formatEmailAddr(contact);
@@ -52,9 +62,8 @@ export function contactObject(contact, opts = {}) {
 
 function formatEmailAddr(contact) {
   if (contact.first_name || contact.last_name) {
-    return `${contact.first_name || ''} ${contact.last_name || ''} <${
-      contact.email
-    }>`.trim();
+    const fullName = `${contact.first_name || ''} ${contact.last_name || ''}`.trim();
+    return `${fullName} <${contact.email}>`.trim();
   }
   return contact.email;
 }
