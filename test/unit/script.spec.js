@@ -9,7 +9,7 @@ import {
 jest.spyOn(document, 'querySelector');
 
 // mock the parentElement object for the 'script' function
-thisScript.parentElement = { appendChild: jest.fn() };
+thisScript.parentElement.appendChild = jest.fn();
 
 describe('findScript', () => {
   // mock the document.currentScript getter by redefining it to point to one of our scripts
