@@ -70,12 +70,14 @@ Any form data can be hidden fields, or it can be a user visible field. The choic
 
 Since some fields are only available if a user uses the Contact Picker, it's important to set up reasonable default values. For example, when the user simply types an email address into the **To** field, we won't have the name associated with that recipient, no will we have the name or email address associated with the sender. It's important to think about how the email will appear in this situation. It won't have any of the personalizations that come from the Contact Picker. So we've exposed some default options for you to set. These can be set up either as HTML data attributes or they can be passed in to the call to `addressBookConnector.setOptions()`.
 
-| Default | Name | Meaning | Resonable value |
-|---------|------|---------|-----------------|
-| Sender name | defaultSenderName | data-default-sender-name | The name to supply for the sender, when none is present.|
+| Name | JS Option Name | HTML attribute | Meaning |
+|------|----------------|----------------|---------|
 | Sender email | senderEmail | data-sender-email | The verified email address of your ESP. |
-| Reply to name | defaultReplyToName | data-default-reply-to-name | The name to use when replying to your email. Uses the sender name if not set. |
-| Reply to email | defaultReplyToEmail | data-default-reply-to-email | The email to use when replying to your email. Users the Sender Email if not set. This value can be overridden by setting a value for `replyToEmail`. |
+| Sender name | defaultSenderName | data-default-sender-name | The name to supply for the sender, when none is present.|
+| Reply-to email | defaultReplyToEmail | data-default-reply-to-email | The email to use when replying to your email. Users the Sender Email if not set. This value can be overridden by setting a value for `replyToEmail`. |
+| Reply-to name | defaultReplyToName | data-default-reply-to-name | The name to use when replying to your email. Uses the sender name if not set. |
+| Greeting | greeting | data-greeting | The greeting text to include with the recipient's name (if present). Defaults to 'Hi' |
+| Greeting placeholder | greetingPlaceholder | data-greeting-placeholder | Text to use in the greeting in place of a missing recipient's first name. Defaults to an empty string. |
 
 ### Example
 
@@ -108,12 +110,16 @@ Here's a simple example form that includes some extra properties
 
 See a complete list of our examples at https://github.com/cloudsponge/address-book-connector-examples/.
 
-When this form is submitted, CloudSponge will forward a payload like so:
+When this form is submitted, CloudSponge will forward a payload (for each email address) like so:
 
     {
         "refUrl": "",
-        "owner": {"first_name": "", "last_name": "", email: ""},
-        "contacts": [{"first_name": "", "last_name": "", email: ""}, {"first_name": "", "last_name": "", email: ""}],
+        "owner_first_name": "",
+        "owner_last_name": "",
+        "owner_email": "",
+        "contact_first_name": "",
+        "contact_last_name": "",
+        "contact_email": "",
         "body": "Hey, I highly recommend ..."
     }
 
