@@ -254,7 +254,7 @@ describe('getContact', () => {
     expect(getContact([matchingContact], [], 'email2@example.com')).toEqual({
       email: 'email2@example.com',
       to: 'email2@example.com',
-      greeting: 'Hi there',
+      greeting: 'Hi',
       first_name: '',
       last_name: '',
     });

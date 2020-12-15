@@ -60,7 +60,9 @@ export function contactObject(contact, opts = {}) {
     }
   }
   obj.to = formatEmailAddr(contact);
-  obj.greeting = `Hi ${contact.first_name || 'there'}`;
+  obj.greeting = `${options.greeting || 'Hi'} ${contact.first_name ||
+    options.greetingPlaceholder ||
+    ''}`.trim();
 
   return obj;
 }
