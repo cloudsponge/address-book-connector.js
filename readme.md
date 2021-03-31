@@ -37,7 +37,7 @@ But be careful! Always test your Zap using a formatted `to` value to see if this
 
 When we see an email in our inbox, the From Name is always displayed prominently. And so it's important to make sure that this information is as familiar looking as possible. Here's a few things to keep in mind. 
 
-1. Use the inviters name as the **From Name** if possible. In cases where it is not available, have a reasonable default value. That means using the TK
+1. Use the inviters name as the **From Name** if possible. In cases where it is not available, have a reasonable default value.
 2. Use an email address that has been verified for sending through your ESP as the **From Email**. This means that you may need to add SPF and DKIM entries as specified by your ESP. You can hardcode this value into your Zap, or you can set it in the default values.
 3. Send from a verified email. Don't try to send from your customer's email address. Doing so will produce strange looking results in an email client. Instead, you can optionally use your customer's email in the Reply To field, so that recipients can reply to whoever sent the email directly rather than your organizational email.
 4. Give recipients a logical place to reply. Depending on your needs, you may want recipients to reply directly to your organization. Or you may prefer them to reply directly to your customer. In either case, you'll want to make sure that the email address is defined. When using the CloudSponge Contact Picker, your customer's email is only available if they used the Contact Picker. That's why we support configuring a default value for the **Reply To Email** and **Reply To Name**.
