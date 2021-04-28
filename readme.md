@@ -74,7 +74,7 @@ Since some fields are only available if a user uses the Contact Picker, it's imp
 |------|----------------|----------------|---------|
 | Sender email | senderEmail | data-sender-email | The verified email address of your ESP. |
 | Sender name | defaultSenderName | data-default-sender-name | The name to supply for the sender, when none is present.|
-| Reply-to email | defaultReplyToEmail | data-default-reply-to-email | The email to use when replying to your email. Users the Sender Email if not set. This value can be overridden by setting a value for `replyToEmail`. |
+| Reply-to email | defaultReplyToEmail | data-default-reply-to-email | The email to use when replying to your email. Uses the Sender Email if not set. This value can be overridden by setting a value for `replyToEmail`. |
 | Reply-to name | defaultReplyToName | data-default-reply-to-name | The name to use when replying to your email. Uses the sender name if not set. |
 | Greeting | greeting | data-greeting | The greeting text to include with the recipient's name (if present). Defaults to 'Hi' |
 | Greeting placeholder | greetingPlaceholder | data-greeting-placeholder | Text to use in the greeting in place of a missing recipient's first name. Defaults to an empty string. |
