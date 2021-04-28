@@ -1,0 +1,67 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+
+    # - name: Yarn install, with caching
+    #   uses: bahmutov/npm-install@v1
+    - name: NPM Cache
+      uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-modules-
+
+    - name: Set up Yarn
+      run: |
+        npm install --global yarn
+        echo $(yarn --version)
+
+    - name: JS Tests
+      run: |
+        yarn install --production=false
+        yarn test:coverage
+
+    - name: publish coverage reports
+      uses: 5monkeys/cobertura-action@master
+      with:
+        path: ./coverage/cobertura-coverage.xml
+        minimum_coverage: 100
+        repo_token: ${{ secrets.CI_COBERTURA_REPORTS }}
+
+    - name: Post result to slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      if: always() # Pick up events even if the job fails or is canceled.
+
