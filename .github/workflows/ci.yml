@@ -47,9 +47,7 @@ jobs:
     - name: JS Tests
       run: |
         yarn install --production=false
-        yarn test
-        yarn coverage
-        yarn report
+        yarn test:coverage
 
     - name: publish coverage reports
       uses: 5monkeys/cobertura-action@master
