@@ -46,6 +46,7 @@
     "rollup-plugin-uglify": "^6.0.3"
   },
   "resolutions": {
+    "glob-parent": "^5.1.2",
     "serialize-javascript": ">=2.1.1"
   },
   "bugs": {
