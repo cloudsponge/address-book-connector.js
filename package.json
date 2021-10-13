@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@cloudsponge/address-book-connector.js",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Connect your users's address books to other services simply and securely.",
   "main": "dist/address-book-connector.min.js",
   "repository": {
