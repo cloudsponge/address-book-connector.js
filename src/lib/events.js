@@ -43,9 +43,20 @@ export const updateContactsField = newContacts => {
     );
     setData(contactsInput, nextContacts);
   }
+
+  // trigger the callback if new contacts were added
+  if (newContacts && newContacts.length) {
+    options.onUpdateContacts &&
+      options.onUpdateContacts.call &&
+      options.onUpdateContacts(newContacts);
+  }
 };
 
 // serialize the owner object into the owner field's dataset
 export const updateOwnerField = (contacts, source, owner) => {
   setData(ownerField(), contactObject(owner, { owner: true }));
+  owner &&
+    options.onUpdateOwner &&
+    options.onUpdateOwner.call &&
+    options.onUpdateOwner(owner);
 };
