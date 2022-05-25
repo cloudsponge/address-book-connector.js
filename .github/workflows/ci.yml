@@ -49,12 +49,13 @@ jobs:
         yarn install --production=false
         yarn test:coverage
 
-    - name: publish coverage reports
-      uses: 5monkeys/cobertura-action@master
-      with:
-        path: ./coverage/cobertura-coverage.xml
-        minimum_coverage: 100
-        repo_token: ${{ secrets.CI_COBERTURA_REPORTS }}
+    # failing with "Error: You must authenticate via a GitHub App."
+    # - name: publish coverage reports
+    #   uses: 5monkeys/cobertura-action@master
+    #   with:
+    #     path: ./coverage/cobertura-coverage.xml
+    #     minimum_coverage: 100
+    #     repo_token: ${{ secrets.CI_COBERTURA_REPORTS }}
 
     - name: Post result to slack
       uses: 8398a7/action-slack@v3

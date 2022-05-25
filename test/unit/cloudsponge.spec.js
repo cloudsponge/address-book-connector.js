@@ -93,6 +93,7 @@ describe('cloudspongeLoaded', () => {
     cloudspongeLoaded();
     expect(formObj.addEventListener).toHaveBeenCalled();
   });
+
   it('queries the form for the contacts field', () => {
     cloudspongeLoaded();
     expect(contactsField).toHaveBeenCalled();
@@ -106,16 +107,17 @@ describe('cloudspongeLoaded', () => {
       afterSubmitContacts: updateContactsField,
     });
   });
+
   it('queries the form for the owner field', () => {
     cloudspongeLoaded();
-    expect(contactsField).toHaveBeenCalled();
+    expect(ownerField).toHaveBeenCalled();
   });
   it('adds a callback when it finds an owner field', () => {
     ownerField.mockImplementation(() => {
       return {};
     });
     cloudspongeLoaded();
-    expect(contactsField).toHaveBeenCalled();
+    expect(ownerField).toHaveBeenCalled();
     expect(cloudsponge.init).toHaveBeenCalledWith({
       beforeDisplayContacts: updateOwnerField,
       afterSubmitContacts: updateContactsField,

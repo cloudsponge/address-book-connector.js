@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@cloudsponge/address-book-connector.js",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Connect your users's address books to other services simply and securely.",
   "main": "dist/address-book-connector.min.js",
   "repository": {
@@ -20,7 +20,8 @@
     "lint:fix": "yarn eslint --fix \"./**/*.js\"",
     "build:clean": "rimraf dist",
     "build:dist": "rollup -c",
-    "build": "yarn build:clean && yarn build:dist"
+    "build": "yarn build:clean && yarn build:dist",
+    "audit:fix": "npm install --package-lock-only; npm audit fix --force; rm yarn.lock; yarn import; rm package-lock.json; yarn install"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

@@ -159,7 +159,14 @@ describe('updateContactsField', () => {
     contact3 = { email: 'email3', first_name: 'first3', last_name: 'last3' },
     contact4 = { email: 'email4', first_name: 'first4', last_name: 'last4' };
 
+  it('calls the onUpdate callback', () => {
+    options.onUpdateContacts = jest.fn();
+    updateContactsField([contact1]);
+    expect(options.onUpdateContacts).toHaveBeenCalledWith([contact1]);
+  });
+
   it('adds the new contacts objects', () => {
+    options.onUpdateContacts = jest.fn();
     const contacts = [contact1, contact2, contact3];
     updateContactsField(contacts);
     expect(setData).toHaveBeenCalledWith(input, [
@@ -179,6 +186,7 @@ describe('updateContactsField', () => {
         to: 'first3 last3 <email3>',
       },
     ]);
+    expect(options.onUpdateContacts).toHaveBeenCalled();
   });
 
   it('excludes unselected contacts objects', () => {
@@ -232,6 +240,7 @@ describe('updateContactsField', () => {
 
 describe('updateOwnerField', () => {
   it('calls setData', () => {
+    options.onUpdateOwner = jest.fn();
     const owner = { first_name: 'first', last_name: 'last', email: 'email' };
     updateOwnerField(null, null, owner);
     expect(setData).toHaveBeenCalledWith(ownerInput, {
@@ -241,5 +250,12 @@ describe('updateOwnerField', () => {
       reply_to_email: 'email',
       reply_to_name: 'first last',
     });
+    expect(options.onUpdateOwner).toHaveBeenCalled();
+  });
+  it('calls onUpdateOwner callback', () => {
+    options.onUpdateOwner = jest.fn();
+    const owner = { first_name: 'first', last_name: 'last', email: 'email' };
+    updateOwnerField(null, null, owner);
+    expect(options.onUpdateOwner).toHaveBeenCalledWith(owner);
   });
 });
