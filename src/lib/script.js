@@ -13,7 +13,10 @@ const thisScript = findScript();
 const script = (src, cb) => {
   // the cloudsponge object attaches itself to the window, so we can check to see if it
   //  exists already before we add the object a second time
-  if (!window.cloudsponge && !document.querySelector(`#${cloudspongeScriptId}`)) {
+  if (
+    !window.cloudsponge &&
+    !document.querySelector(`#${cloudspongeScriptId}`)
+  ) {
     const scriptTag = document.createElement('script');
     scriptTag.id = cloudspongeScriptId;
     scriptTag.src = src;
