@@ -50,7 +50,7 @@ const cloudspongeTrigger = data => {
         data
       );
       // invoke a callback on the addressBookConnector object
-      options.success && options.success();
+      options.success && options.success(data);
     })
     .catch(error => {
       console.error(
@@ -58,7 +58,7 @@ const cloudspongeTrigger = data => {
         error
       );
       // invoke a callback on the addressBookConnector object
-      options.failure && options.failure(error);
+      options.failure && options.failure(error, data);
     });
 };
 
