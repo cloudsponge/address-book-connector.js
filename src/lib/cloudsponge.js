@@ -38,7 +38,7 @@ const cloudspongeLoaded = () => {
 };
 
 const cloudspongeInit = opts => {
-  window.cloudsponge.init(opts);
+  window.cloudsponge && cloudsponge.init(opts);
 };
 
 const cloudspongeTrigger = data => {
