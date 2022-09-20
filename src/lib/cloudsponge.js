@@ -12,7 +12,7 @@ const submitForm = e => {
   // this is important in case the user added or removed any email addresses manually
   updateContactsField([]);
 
-  if (options.sendMailto) {
+  if (options.sendVia == 'mailto') {
     const data = serializeForm();
     if (data) {
       const to = data.owner.email || '';
