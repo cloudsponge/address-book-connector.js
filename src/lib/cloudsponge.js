@@ -12,10 +12,28 @@ const submitForm = e => {
   // this is important in case the user added or removed any email addresses manually
   updateContactsField([]);
 
-  // serialize the form inputs for submission
-  const data = serializeForm();
-  if (data) {
-    cloudspongeTrigger(data);
+  if (options.sendMailto) {
+    const data = serializeForm();
+    if (data) {
+      const to = data.owner.email || '';
+      const bcc = data.contacts.map(to => encodeURIComponent(to.email)).join(',');
+      const body = data.body + encodeURIComponent("\n\n" + data.customMessage);
+      const url = `mailto:${to}?subject=${data.subject}&body=${body}&bcc=${bcc}`;
+      window.open(url);
+      console.log(
+        '[address-book-connector.js] Successfully opened mailto with data:',
+        url
+      );
+      // invoke a callback on the addressBookConnector object
+      resetForm();
+      options.success && options.success(data);
+    }
+  } else {
+    // serialize the form inputs for submission
+    const data = serializeForm();
+    if (data) {
+      cloudspongeTrigger(data);
+    }
   }
 };
 
