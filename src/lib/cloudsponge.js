@@ -25,7 +25,6 @@ const submitForm = e => {
         url
       );
       // invoke a callback on the addressBookConnector object
-      resetForm();
       options.success && options.success(data);
     }
   } else {
