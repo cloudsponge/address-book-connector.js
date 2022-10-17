@@ -16,9 +16,9 @@ const submitForm = e => {
     const data = serializeForm();
     if (data) {
       const to = data.owner.email || '';
-      const bcc = data.contacts.map(to => encodeURIComponent(to.email)).join(',');
-      const body = data.body + encodeURIComponent("\n\n" + data.customMessage);
-      const url = `mailto:${to}?subject=${data.subject}&body=${body}&bcc=${bcc}`;
+      const bcc = data.contacts.map(to => encodeURIComponent(to.email)).join(',') || '';
+      const body = (data.body || '') + (data.customMessage ? encodeURIComponent("\n\n" + data.customMessage) : '');
+      const url = `mailto:${to}?subject=${data.subject || ''}&body=${body}&bcc=${bcc}`;
       window.open(url);
       console.log(
         '[address-book-connector.js] Successfully opened mailto with data:',
