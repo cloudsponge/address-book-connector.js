@@ -5,6 +5,7 @@ import options from './lib/options';
 import { thisScript, addScript } from './lib/script';
 import { isObj, isStr } from './lib/utils';
 import { updateOwnerField } from './lib/events';
+import { submitForm } from './lib/cloudsponge';
 
 // public function that assigns a key and initializes the cloudsponge object
 // key: required - your CloudSponge key, get one from your account at www.cloudsponge.com
@@ -40,6 +41,7 @@ initialize();
 const addressBookConnector = {
   initialize,
   setOptions,
+  submitForm,
 };
 
 export default addressBookConnector;
