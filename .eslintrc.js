@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   rules: {
     "max-len": [1, 120, 2, {ignoreComments: true}],
   },

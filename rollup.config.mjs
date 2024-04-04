@@ -1,13 +1,13 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
-import replace from 'rollup-plugin-replace';
-import strip from 'rollup-plugin-strip';
-import { uglify } from 'rollup-plugin-uglify';
-import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import replace from '@rollup/plugin-replace';
+import strip from '@rollup/plugin-strip';
+import terser from '@rollup/plugin-terser';
+// import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 // import pkg from './package.json';
-const babelOptions = require('./babel.config');
+import babelOptions from './babel.config.js';
 
 const input = './src/index.js';
 const extensions = ['.js'];
@@ -48,9 +48,9 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development'), preventAssignment: true }),
       commonjs(commonjsArgs),
-      sizeSnapshot(snapshotArgs),
+      // sizeSnapshot(snapshotArgs),
     ],
   },
 
@@ -66,11 +66,11 @@ export default [
     plugins: [
       babel(getBabelOptions()),
       resolve({ extensions }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production'), preventAssignment: true }),
       commonjs(commonjsArgs),
       strip({ debugger: true }),
-      sizeSnapshot(snapshotArgs),
-      uglify(),
+      // sizeSnapshot(snapshotArgs),
+      terser(),
     ],
   },
 ];

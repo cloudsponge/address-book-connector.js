@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import options from '../../src/lib/options';
 import { updateContactsField, updateOwnerField } from '../../src/lib/events';
 import {

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { jsonDataKey } from '../../src/lib/consts';
 import {
   form,

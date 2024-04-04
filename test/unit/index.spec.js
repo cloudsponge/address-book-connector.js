@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import addressBookConnector from '../../src/index';
 import { addScript, thisScript } from '../../src/lib/script';
 import options from '../../src/lib/options';
