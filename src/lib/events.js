@@ -20,7 +20,7 @@ export const computeNextContactsList = (emails, list1, list2, opts) => {
 // assigns a JSON object to the contacts field for form submission
 export const updateContactsField = newContacts => {
   const opts = {};
-  opts.subject = options.subject;
+  opts.subject = options.subject && (options.subject.default || options.subject);
   if (!opts.subject) {
     const subjectField = dataField('subject');
     opts.subject = subjectField && subjectField.value;

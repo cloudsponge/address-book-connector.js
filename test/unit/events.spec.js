@@ -229,6 +229,12 @@ describe('updateContactsField', () => {
     expect(dataField).not.toHaveBeenCalled();
   });
 
+  it('gets the default subject from the options', () => {
+    options.subject = {default: 'optional subject'};
+    updateContactsField([]);
+    expect(dataField).not.toHaveBeenCalled();
+  });
+
   it('uses the subject from a dataField', () => {
     dataField.mockImplementation(() => {
       return { value: 'subject' };

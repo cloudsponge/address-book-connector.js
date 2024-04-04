@@ -25,7 +25,7 @@ describe('contactObject', () => {
     );
   });
 
-  // TODO add specs for subject and personalSubject
+  // specs for subject and personalSubject
   describe('subject', () => {
     it('returns nothing', () => {
       const contact = {};
@@ -33,6 +33,14 @@ describe('contactObject', () => {
     });
     it('returns the subject', () => {
       const opts = { subject: 'this is an email subject' };
+      const contact = {};
+      expect(contactObject(contact, opts).subject).toEqual(
+        'this is an email subject'
+      );
+    });
+
+    it('returns the default subject', () => {
+      const opts = {subject: {default: 'this is an email subject'}};
       const contact = {};
       expect(contactObject(contact, opts).subject).toEqual(
         'this is an email subject'

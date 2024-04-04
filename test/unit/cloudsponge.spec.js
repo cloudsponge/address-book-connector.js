@@ -72,6 +72,36 @@ describe('submitForm', () => {
     submitForm(event);
     expect(window.cloudsponge.trigger).toHaveBeenCalledWith({});
   });
+
+  describe('when option sends data to mailto', () => {
+    it('opens a mailto link', () => {
+      serializeForm.mockImplementation(() => ({owner: {email: 'hi@example.com'}, contacts: [{email: 'recipient@example.com'}], body: 'check it out', customMessage: 'hello'}));
+      jest.spyOn(window, 'open').mockImplementation(() => {});
+      options.sendVia = 'mailto';
+      options.success = jest.fn();
+      submitForm(event);
+      expect(window.open).toHaveBeenCalled();
+      expect(options.success).toHaveBeenCalled();
+    });
+
+    it('formats a message with default data', () => {
+      serializeForm.mockImplementation(() => ({owner: {email: ''}, contacts: [{email: ''}]}));
+      jest.spyOn(window, 'open').mockImplementation(() => {});
+      options.sendVia = 'mailto';
+      options.success = jest.fn();
+      submitForm(event);
+      expect(window.open).toHaveBeenCalled();
+      expect(options.success).toHaveBeenCalled();
+    });
+
+    it('does not open a mailto link when there is no form data', () => {
+      serializeForm.mockImplementation(() => (null));
+      options.sendVia = 'mailto';
+      options.success = jest.fn();
+      submitForm(event);
+      expect(window.open).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe('cloudspongeLoaded', () => {
