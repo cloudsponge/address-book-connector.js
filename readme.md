@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/cloudsponge/address-book-connector.js.svg?branch=master)](https://travis-ci.org/cloudsponge/address-book-connector.js)
-
 # Getting Started
 
-This library depends on both CloudSponge and Zapier to connect a form on your web page with a Zapier workflow. You'll need to have an account with both services. You can access the [CloudSponge trigger in your Zapier account here]( https://zapier.com/developer/public-invite/29495/03f2709846a0dbe95b5347f6205fa49b/).
+This library depends on both CloudSponge and Zapier to connect a form on your web page with a Zapier workflow. You'll need to have an account with both services. You can access the [CloudSponge trigger in your Zapier account here](https://zapier.com/developer/public-invite/29495/03f2709846a0dbe95b5347f6205fa49b/).
 
 Add the library to your `package.json` with `yarn`
 
