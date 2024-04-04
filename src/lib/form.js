@@ -9,7 +9,7 @@ const form = () => {
   return document.querySelector(`[data-${namespace}-js]`);
 };
 
-const dataField = fieldName => {
+const dataField = (fieldName) => {
   const formElement = form();
   return (
     formElement &&
@@ -54,7 +54,7 @@ const setData = (element, data) => {
 };
 
 // identifies a field as the special field for "contacts"
-const isContactField = input => {
+const isContactField = (input) => {
   const contactsFieldClassNameMatcher = new RegExp(
     `\\b${contactsFieldClassName}\\b`
   );
@@ -68,7 +68,7 @@ const isContactField = input => {
 //   then returning the 'data-addressBookConnector-name' attribute,
 //   then returning the name attribute
 //   then returning the id attribute
-const inputKey = input => {
+const inputKey = (input) => {
   if (isContactField(input)) {
     return 'contacts';
   } else {
@@ -85,7 +85,7 @@ const serializeForm = () => {
   const formElement = form();
   if (formElement) {
     const data = {};
-    formElement.querySelectorAll('input,textarea,select').forEach(input => {
+    formElement.querySelectorAll('input,textarea,select').forEach((input) => {
       data[inputKey(input)] = getData(input, input.value);
     });
     return data;

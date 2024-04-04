@@ -40,7 +40,7 @@ describe('contactObject', () => {
     });
 
     it('returns the default subject', () => {
-      const opts = {subject: {default: 'this is an email subject'}};
+      const opts = { subject: { default: 'this is an email subject' } };
       const contact = {};
       expect(contactObject(contact, opts).subject).toEqual(
         'this is an email subject'

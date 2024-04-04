@@ -5,7 +5,7 @@ import options from './options';
 // these attributes are merged with manually input data for submission to the cloudsponge.trigger function.
 
 export function findContactData(list, email) {
-  return list.find(c => {
+  return list.find((c) => {
     return c.email == email || c.__selectedMail__ == email;
   });
 }
@@ -60,17 +60,18 @@ export function contactObject(contact, opts = {}) {
     }
   }
   obj.to = formatEmailAddr(contact);
-  obj.greeting = `${options.greeting || 'Hi'} ${contact.first_name ||
-    options.greetingPlaceholder ||
-    ''}`.trim();
+  obj.greeting = `${options.greeting || 'Hi'} ${
+    contact.first_name || options.greetingPlaceholder || ''
+  }`.trim();
 
   return obj;
 }
 
 function formatEmailAddr(contact) {
   if (contact.first_name || contact.last_name) {
-    const fullName = `${contact.first_name || ''} ${contact.last_name ||
-      ''}`.trim();
+    const fullName = `${contact.first_name || ''} ${
+      contact.last_name || ''
+    }`.trim();
     return `${fullName} <${contact.email}>`.trim();
   }
   return contact.email;

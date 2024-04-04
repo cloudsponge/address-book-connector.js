@@ -230,7 +230,7 @@ describe('updateContactsField', () => {
   });
 
   it('gets the default subject from the options', () => {
-    options.subject = {default: 'optional subject'};
+    options.subject = { default: 'optional subject' };
     updateContactsField([]);
     expect(dataField).not.toHaveBeenCalled();
   });

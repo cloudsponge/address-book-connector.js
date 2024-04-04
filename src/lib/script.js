@@ -29,12 +29,13 @@ const script = (src, cb) => {
 };
 
 // returns the proper name of the cloudsponge script to be added to the page
-const csScriptSrc = opts => {
-  return `http${opts.insecure ? '' : 's'}://${opts.host ||
-    'api.cloudsponge.com'}/widget/${opts.key}.js`;
+const csScriptSrc = (opts) => {
+  return `http${opts.insecure ? '' : 's'}://${
+    opts.host || 'api.cloudsponge.com'
+  }/widget/${opts.key}.js`;
 };
 
-const addScript = opts => {
+const addScript = (opts) => {
   if (opts.key) {
     script(csScriptSrc(opts), cloudspongeLoaded);
   }

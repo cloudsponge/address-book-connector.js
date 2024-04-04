@@ -44,7 +44,7 @@ window.cloudsponge = {
 
 jest.spyOn(window.cloudsponge, 'init').mockImplementation(() => {});
 jest.spyOn(window.cloudsponge, 'trigger').mockImplementation(() => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     resolve();
   });
 });
@@ -75,7 +75,12 @@ describe('submitForm', () => {
 
   describe('when option sends data to mailto', () => {
     it('opens a mailto link', () => {
-      serializeForm.mockImplementation(() => ({owner: {email: 'hi@example.com'}, contacts: [{email: 'recipient@example.com'}], body: 'check it out', customMessage: 'hello'}));
+      serializeForm.mockImplementation(() => ({
+        owner: { email: 'hi@example.com' },
+        contacts: [{ email: 'recipient@example.com' }],
+        body: 'check it out',
+        customMessage: 'hello',
+      }));
       jest.spyOn(window, 'open').mockImplementation(() => {});
       options.sendVia = 'mailto';
       options.success = jest.fn();
@@ -85,7 +90,10 @@ describe('submitForm', () => {
     });
 
     it('formats a message with default data', () => {
-      serializeForm.mockImplementation(() => ({owner: {email: ''}, contacts: [{email: ''}]}));
+      serializeForm.mockImplementation(() => ({
+        owner: { email: '' },
+        contacts: [{ email: '' }],
+      }));
       jest.spyOn(window, 'open').mockImplementation(() => {});
       options.sendVia = 'mailto';
       options.success = jest.fn();
@@ -95,7 +103,7 @@ describe('submitForm', () => {
     });
 
     it('does not open a mailto link when there is no form data', () => {
-      serializeForm.mockImplementation(() => (null));
+      serializeForm.mockImplementation(() => null);
       options.sendVia = 'mailto';
       options.success = jest.fn();
       submitForm(event);

@@ -4,7 +4,7 @@ import { form, ownerField, contactsField, serializeForm } from './form';
 import { updateContactsField, updateOwnerField } from './events';
 
 // serializes the form and passes the data to the cloudsponge object for triggering
-const submitForm = e => {
+const submitForm = (e) => {
   // don't post the form, let cloudsponge handle everything
   e.preventDefault();
 
@@ -16,8 +16,13 @@ const submitForm = e => {
     const data = serializeForm();
     if (data) {
       const to = data.owner.email || '';
-      const bcc = data.contacts.map(to => encodeURIComponent(to.email)).join(',') || '';
-      const body = (data.body || '') + (data.customMessage ? encodeURIComponent("\n\n" + data.customMessage) : '');
+      const bcc =
+        data.contacts.map((to) => encodeURIComponent(to.email)).join(',') || '';
+      const body =
+        (data.body || '') +
+        (data.customMessage
+          ? encodeURIComponent('\n\n' + data.customMessage)
+          : '');
       const url = `mailto:${to}?subject=${data.subject || ''}&body=${body}&bcc=${bcc}`;
       window.open(url);
       console.log(
@@ -54,11 +59,11 @@ const cloudspongeLoaded = () => {
   cloudspongeInit(cloudspongeOpts);
 };
 
-const cloudspongeInit = opts => {
+const cloudspongeInit = (opts) => {
   window.cloudsponge && cloudsponge.init(opts);
 };
 
-const cloudspongeTrigger = data => {
+const cloudspongeTrigger = (data) => {
   return window.cloudsponge
     .trigger(data)
     .then(() => {
@@ -69,7 +74,7 @@ const cloudspongeTrigger = data => {
       // invoke a callback on the addressBookConnector object
       options.success && options.success(data);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(
         '[address-book-connector.js] Failed to trigger cloudsponge:',
         error

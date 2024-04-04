@@ -11,7 +11,7 @@ import { submitForm } from './lib/cloudsponge';
 // key: required - your CloudSponge key, get one from your account at www.cloudsponge.com
 // success: optional - a callback to be invoked after the form submits successfully sending the contacts to cloudsponge
 // failure: optional - a callback to be invoked after the form submits and an error occurs
-const setOptions = opts => {
+const setOptions = (opts) => {
   Object.assign(options, opts);
 
   if (opts.key) {

@@ -12,15 +12,16 @@ import options from './options';
 // using our list of emails as the master, pick contact objects from either list
 //  to create our next list of contacts
 export const computeNextContactsList = (emails, list1, list2, opts) => {
-  return emails.map(email => {
+  return emails.map((email) => {
     return getContact(list1, list2, email, opts);
   });
 };
 
 // assigns a JSON object to the contacts field for form submission
-export const updateContactsField = newContacts => {
+export const updateContactsField = (newContacts) => {
   const opts = {};
-  opts.subject = options.subject && (options.subject.default || options.subject);
+  opts.subject =
+    options.subject && (options.subject.default || options.subject);
   if (!opts.subject) {
     const subjectField = dataField('subject');
     opts.subject = subjectField && subjectField.value;
