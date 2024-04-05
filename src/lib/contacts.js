@@ -34,7 +34,7 @@ export function contactObject(contact, opts = {}) {
     // create the from_name, reply_to_name and reply_to_email for the object
     // Sender name is the name of the owner of the address book, if available
     obj.sender_name = ownerName || options.defaultSenderName || '';
-    obj.sender_email = options.senderEmail || "";
+    obj.sender_email = options.senderEmail || '';
     // duplicate the sender_name field as from_name for other ESPs which use this name.
     obj.from_name = obj.sender_name;
     // reply to name is the same as the
@@ -58,8 +58,8 @@ export function contactObject(contact, opts = {}) {
       obj.personal_subject = opts.subject;
     }
   } else {
-    opts.subject = '';
-    opts.personal_subject = '';  
+    obj.subject = '';
+    obj.personal_subject = '';
   }
   obj.to = formatEmailAddr(obj);
   obj.greeting = `${options.greeting || 'Hi'} ${

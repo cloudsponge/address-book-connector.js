@@ -29,7 +29,7 @@ describe('contactObject', () => {
   describe('subject', () => {
     it('returns nothing', () => {
       const contact = {};
-      expect(contactObject(contact).subject).toBe(undefined);
+      expect(contactObject(contact).subject).toEqual('');
     });
     it('returns the subject', () => {
       const opts = { subject: 'this is an email subject' };
@@ -51,7 +51,7 @@ describe('contactObject', () => {
   describe('personal_subject', () => {
     it('returns nothing', () => {
       const contact = {};
-      expect(contactObject(contact).personal_subject).toBe(undefined);
+      expect(contactObject(contact).personal_subject).toEqual('');
     });
     it('returns the subject', () => {
       const opts = { subject: 'this is an email subject' };
@@ -237,6 +237,8 @@ describe('getContact', () => {
       ...matchingContact,
       greeting: 'Hi first',
       to: 'first last <email@example.com>',
+      personal_subject: '',
+      subject: '',
     });
   });
 
@@ -250,6 +252,8 @@ describe('getContact', () => {
       ...matchingContact,
       to: 'first last <email@example.com>',
       greeting: 'Hi first',
+      personal_subject: '',
+      subject: '',
     });
   });
 
@@ -265,6 +269,8 @@ describe('getContact', () => {
       greeting: 'Hi',
       first_name: '',
       last_name: '',
+      personal_subject: '',
+      subject: '',
     });
   });
 });

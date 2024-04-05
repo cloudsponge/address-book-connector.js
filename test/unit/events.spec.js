@@ -31,6 +31,8 @@ describe('computeNextContactsList', () => {
         last_name: '',
         greeting: 'Hi',
         to: 'email@email.com',
+        personal_subject: '',
+        subject: '',
       },
     ]);
   });
@@ -50,6 +52,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email2',
+        personal_subject: '',
+        subject: '',
       },
       {
         email: 'email',
@@ -57,6 +61,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email',
+        personal_subject: '',
+        subject: '',
       },
     ]);
   });
@@ -76,6 +82,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email1',
+        personal_subject: '',
+        subject: '',
       },
       {
         email: 'email2',
@@ -83,6 +91,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email2',
+        personal_subject: '',
+        subject: '',
       },
       {
         email: 'email',
@@ -90,6 +100,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email',
+        personal_subject: '',
+        subject: '',
       },
     ]);
   });
@@ -109,6 +121,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email1',
+        personal_subject: '',
+        subject: '',
       },
       {
         email: 'email2',
@@ -116,6 +130,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email2',
+        personal_subject: '',
+        subject: '',
       },
       {
         email: 'email',
@@ -123,6 +139,8 @@ describe('computeNextContactsList', () => {
         greeting: 'Hi',
         last_name: '',
         to: 'email',
+        personal_subject: '',
+        subject: '',
       },
     ]);
   });
@@ -174,16 +192,22 @@ describe('updateContactsField', () => {
         ...contact1,
         greeting: 'Hi first1',
         to: 'first1 last1 <email1>',
+        personal_subject: '',
+        subject: '',
       },
       {
         ...contact2,
         greeting: 'Hi first2',
         to: 'first2 last2 <email2>',
+        personal_subject: '',
+        subject: '',
       },
       {
         ...contact3,
         greeting: 'Hi first3',
         to: 'first3 last3 <email3>',
+        personal_subject: '',
+        subject: '',
       },
     ]);
     expect(options.onUpdateContacts).toHaveBeenCalled();
@@ -197,16 +221,22 @@ describe('updateContactsField', () => {
         ...contact1,
         greeting: 'Hi first1',
         to: 'first1 last1 <email1>',
+        personal_subject: '',
+        subject: '',
       },
       {
         ...contact2,
         greeting: 'Hi first2',
         to: 'first2 last2 <email2>',
+        personal_subject: '',
+        subject: '',
       },
       {
         ...contact3,
         greeting: 'Hi first3',
         to: 'first3 last3 <email3>',
+        personal_subject: '',
+        subject: '',
       },
     ]);
   });
@@ -255,7 +285,7 @@ describe('updateOwnerField', () => {
       sender_name: 'first last',
       reply_to_email: 'email',
       reply_to_name: 'first last',
-      sender_email: "",
+      sender_email: '',
     });
     expect(options.onUpdateOwner).toHaveBeenCalled();
   });
