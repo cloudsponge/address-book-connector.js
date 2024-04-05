@@ -142,10 +142,10 @@ describe('contactObject', () => {
       });
     });
     describe('sender_email', () => {
-      it('can be absent', () => {
+      it('is always present', () => {
         const contact = { email: 'email@example.com' };
-        expect(contactObject(contact, { owner: true }).sender_email).toBe(
-          undefined
+        expect(contactObject(contact, { owner: true }).sender_email).toEqual(
+          ''
         );
       });
       it('can be present', () => {

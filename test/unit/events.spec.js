@@ -255,6 +255,7 @@ describe('updateOwnerField', () => {
       sender_name: 'first last',
       reply_to_email: 'email',
       reply_to_name: 'first last',
+      sender_email: "",
     });
     expect(options.onUpdateOwner).toHaveBeenCalled();
   });

@@ -23,19 +23,18 @@ export function contactObject(contact, opts = {}) {
   const obj = {
     email: Array.isArray(contact.email)
       ? contact.email[0].address
-      : contact.email,
+      : contact.email || '',
+    first_name: contact.first_name || '',
+    last_name: contact.last_name || '',
   };
-  obj.first_name = contact.first_name || '';
-  obj.last_name = contact.last_name || '';
 
+  // if the owner flag is set, then we are creating the owner object
   if (opts.owner) {
     const ownerName = `${obj.first_name} ${obj.last_name}`.trim();
     // create the from_name, reply_to_name and reply_to_email for the object
     // Sender name is the name of the owner of the address book, if available
     obj.sender_name = ownerName || options.defaultSenderName || '';
-    if (options.senderEmail) {
-      obj.sender_email = options.senderEmail;
-    }
+    obj.sender_email = options.senderEmail || "";
     // duplicate the sender_name field as from_name for other ESPs which use this name.
     obj.from_name = obj.sender_name;
     // reply to name is the same as the
@@ -58,6 +57,9 @@ export function contactObject(contact, opts = {}) {
     } else {
       obj.personal_subject = opts.subject;
     }
+  } else {
+    opts.subject = '';
+    opts.personal_subject = '';  
   }
   obj.to = formatEmailAddr(obj);
   obj.greeting = `${options.greeting || 'Hi'} ${
