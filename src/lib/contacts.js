@@ -59,7 +59,7 @@ export function contactObject(contact, opts = {}) {
       obj.personal_subject = opts.subject;
     }
   }
-  obj.to = formatEmailAddr(contact);
+  obj.to = formatEmailAddr(obj);
   obj.greeting = `${options.greeting || 'Hi'} ${
     contact.first_name || options.greetingPlaceholder || ''
   }`.trim();
