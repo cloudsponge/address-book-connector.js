@@ -32,7 +32,7 @@ jobs:
     # - name: Yarn install, with caching
     #   uses: bahmutov/npm-install@v1
     - name: NPM Cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
