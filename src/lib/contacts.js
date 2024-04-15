@@ -51,7 +51,7 @@ export function contactObject(contact, opts = {}) {
 
   // set the personalized fields
   if (opts.subject) {
-    obj.subject = opts.subject.default || opts.subject;
+    obj.subject = (Object.hasOwn(opts.subject, 'default') ? opts.subject.default : opts.subject) || '';
     if (contact.first_name) {
       obj.personal_subject = `${contact.first_name} ${opts.subject}`.trim();
     } else {
