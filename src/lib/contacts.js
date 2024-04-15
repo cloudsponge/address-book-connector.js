@@ -53,9 +53,9 @@ export function contactObject(contact, opts = {}) {
   if (opts.subject) {
     obj.subject = (Object.hasOwn(opts.subject, 'default') ? opts.subject.default : opts.subject) || '';
     if (contact.first_name) {
-      obj.personal_subject = `${contact.first_name} ${opts.subject}`.trim();
+      obj.personal_subject = `${contact.first_name} ${obj.subject}`.trim();
     } else {
-      obj.personal_subject = opts.subject;
+      obj.personal_subject = obj.subject;
     }
   } else {
     obj.subject = '';
